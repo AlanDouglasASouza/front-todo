@@ -4,18 +4,18 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "To-do list",
-    description: "Create by Alan D A Souza",
+  title: "To-do list",
+  description: "Create by Alan D A Souza",
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <html lang="pt">
-            <body className={inter.className}>{children}</body>
-        </html>
-    );
+  return (
+    <html lang="pt-br">
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
 }
