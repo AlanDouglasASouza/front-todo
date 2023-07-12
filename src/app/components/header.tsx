@@ -4,7 +4,7 @@ interface IHeader {
 }
 
 export default function Header({ time, setTime }: IHeader) {
-    const times = ["Day", "Week", "Mouth", "Year"];
+    const times = ["Day", "Week", "Month", "Year"];
 
     return (
         <header className="flex fixed justify-center items-center top-0 w-full h-14 border-b-2 border-gray-800 gap-32 text-lg text-gray-400 pt-2">

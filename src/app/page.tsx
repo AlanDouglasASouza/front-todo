@@ -5,6 +5,7 @@ import Header from "./components/header";
 
 export default function Home() {
     const [selectTime, setSelectTime] = useState("Day");
+    const [date, setDate] = useState(new Date());
 
     return (
         <main className="flex min-h-screen flex-col items-center text-cyan-50 bg-gray-700">
