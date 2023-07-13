@@ -1,4 +1,6 @@
-export const formateDate = (arg: string, date: Date) => {
+import { IBoxDate } from "../interfaces";
+
+export const formateDate = (arg: string, date: Date): IBoxDate => {
     const week = [
         "Sunday",
         "Monday",
@@ -19,9 +21,13 @@ export const formateDate = (arg: string, date: Date) => {
             };
         }
         case "Week": {
+            const { sunday, monday } = getDaysWeek(date);
+            const sundaySplit = sunday.toDateString().split(" ");
+            const mondaySplit = monday.toDateString().split(" ");
+
             return {
-                title: week[date.getDay()],
-                data: date.getDate().toString(),
+                title: `Week`,
+                data: `${sundaySplit[1]} ${sundaySplit[2]} - ${mondaySplit[1]} ${mondaySplit[2]}, ${mondaySplit[3]}`,
             };
         }
         case "Month": {
@@ -34,9 +40,27 @@ export const formateDate = (arg: string, date: Date) => {
         }
         case "Year": {
             return {
-                title: date.getFullYear(),
-                data: "Jan - Dez, " + date.getFullYear(),
+                title: date.getFullYear().toString(),
+                data: "Jan - Dec, " + date.getFullYear(),
+            };
+        }
+        default: {
+            return {
+                title: "",
+                data: "",
             };
         }
     }
+};
+
+const getDaysWeek = (date: Date) => {
+    const dayOfWeek = date.getDay();
+    const diff = date.getDate() - dayOfWeek;
+
+    const diffMonday = date.getDate() + 6 - dayOfWeek;
+
+    const sunday = new Date(date.setDate(diff));
+    const monday = new Date(date.setDate(diffMonday));
+
+    return { sunday, monday };
 };
