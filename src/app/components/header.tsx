@@ -13,7 +13,7 @@ export default function Header({ time: _time, setTime }: IHeader) {
                             ? "text-white border-b-2 border-yellow-400"
                             : ""
                     }`}
-                    key={1}
+                    key={time}
                     onClick={() => setTime(time)}
                 >
                     {time}

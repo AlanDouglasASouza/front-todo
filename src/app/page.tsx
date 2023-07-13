@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateContainer from "./components/dateContainer";
 import Header from "./components/header";
 import { formateDate } from "./helpers/formateDate";
 import { Times } from "./enums/times";
+import { increaseTime } from "./helpers/alterTimes";
 
 export default function Home() {
     const [selectTime, setSelectTime] = useState(Times.DAY);
@@ -11,11 +12,13 @@ export default function Home() {
     const { title, data } = formateDate(selectTime, date);
 
     const clickRightTime = () => {
-        alert("Direita");
+        const newDate = increaseTime(date, selectTime);
+
+        setDate(newDate);
     };
 
     const clickLeftTime = () => {
-        alert("Esquerda");
+        alert("aa");
     };
 
     return (
