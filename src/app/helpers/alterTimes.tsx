@@ -1,44 +1,52 @@
 import { Times } from "../enums/times";
 
-export const increaseTime = (date: Date, time: Times): Date => {
-    switch (time) {
-        case Times.DAY:
-            return upDay(date);
+export const increaseTime = (
+  date: Date,
+  time: Times,
+  isIncrease: boolean
+): Date => {
+  switch (time) {
+    case Times.DAY:
+      return upDay(date, isIncrease);
 
-        case Times.WEEK:
-            return upWeek(date);
+    case Times.WEEK:
+      return upWeek(date, isIncrease);
 
-        case Times.MONTH:
-            return upMonth(date);
+    case Times.MONTH:
+      return upMonth(date, isIncrease);
 
-        case Times.YEAR:
-            return upYear(date);
+    case Times.YEAR:
+      return upYear(date, isIncrease);
 
-        default:
-            return new Date();
-    }
+    default:
+      return new Date();
+  }
 };
 
-const upDay = (date: Date): Date => {
-    const day = date.getDate() + 1;
-    return new Date(date.setDate(day));
+const upDay = (date: Date, isIncrease: boolean): Date => {
+  const alterTime = isIncrease ? 1 : -1;
+  const day = date.getDate() + alterTime;
+  return new Date(date.setDate(day));
 };
 
-const upWeek = (date: Date): Date => {
-    date.setDate(date.getDate() + 7);
+const upWeek = (date: Date, isIncrease: boolean): Date => {
+  const alterTime = isIncrease ? 7 : -7;
+  date.setDate(date.getDate() + alterTime);
 
-    return date;
+  return date;
 };
 
-const upMonth = (date: Date): Date => {
-    const monthNow = date.getMonth();
-    const month = monthNow + 1;
+const upMonth = (date: Date, isIncrease: boolean): Date => {
+  const alterTime = isIncrease ? 1 : -1;
+  const monthNow = date.getMonth();
+  const month = monthNow + alterTime;
 
-    return new Date(date.setMonth(month));
+  return new Date(date.setMonth(month));
 };
 
-const upYear = (date: Date): Date => {
-    const year = date.getFullYear() + 1;
+const upYear = (date: Date, isIncrease: boolean): Date => {
+  const alterTime = isIncrease ? 1 : -1;
+  const year = date.getFullYear() + alterTime;
 
-    return new Date(date.setFullYear(year));
+  return new Date(date.setFullYear(year));
 };
