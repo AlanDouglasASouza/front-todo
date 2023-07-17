@@ -5,6 +5,7 @@ import Header from "./components/header";
 import { formateDate } from "./helpers/formateDate";
 import { Times } from "./enums/times";
 import { increaseTime } from "./helpers/alterTimes";
+import InputTodo from "./components/inputTodo";
 
 export default function Home() {
   const [selectTime, setSelectTime] = useState(Times.DAY);
@@ -30,6 +31,7 @@ export default function Home() {
         clickLeft={clickLeftTime}
         clickRight={clickRightTime}
       />
+      <InputTodo />
     </main>
   );
 }
