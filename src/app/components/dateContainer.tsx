@@ -8,7 +8,7 @@ export default function DateContainer({
   clickRight,
 }: IBoxDate) {
   return (
-    <div className="flex justify-center items-center w-full h-96">
+    <div className="flex justify-center items-center w-full h-60 pt-11">
       <span
         className="text-4xl text-gray-400 cursor-pointer"
         onClick={clickLeft}
