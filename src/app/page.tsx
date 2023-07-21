@@ -7,6 +7,7 @@ import { Times } from "./enums/times";
 import { increaseTime } from "./helpers/alterTimes";
 import InputTodo from "./components/inputTodo";
 import TasksContainer from "./components/tasksContainer";
+import TaskBox from "./components/taskBox";
 
 export default function Home() {
   const [selectTime, setSelectTime] = useState(Times.DAY);
@@ -34,6 +35,7 @@ export default function Home() {
       />
       <TasksContainer>
         <InputTodo />
+        <TaskBox />
       </TasksContainer>
     </main>
   );
