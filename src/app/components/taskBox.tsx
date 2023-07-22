@@ -3,7 +3,7 @@ import Checkbox from "./checkBox";
 export default function TaskBox() {
   return (
     <div className="flex items-center justify-between w-full">
-      <Checkbox label="Testando a label" checked={true} />
+      <Checkbox label="Testando a label" />
       <svg
         className="w-8 h-8 text-gray-200 dark:text-gray-200 cursor-pointer"
         aria-hidden="true"
