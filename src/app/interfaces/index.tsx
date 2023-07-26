@@ -19,6 +19,7 @@ export interface ICheckBox {
 }
 
 export interface ITaskBox {
+  selected: boolean;
   checkBox?: ICheckBox;
   content: string;
 }

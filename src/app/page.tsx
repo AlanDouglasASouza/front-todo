@@ -36,13 +36,19 @@ export default function Home() {
       <TasksContainer>
         <InputTodo />
         <TaskBox
-          content="I love all of this ♥"
+          content="I love all of this ♥I love all of this ♥I love all of this ♥I love all of this ♥I love all of this ♥vI love all of this ♥I love all of this ♥"
           checkBox={{ checked: false, label: "" }}
+          selected={true}
         />
-        <TaskBox content="" checkBox={{ checked: true, label: "" }} />
+        <TaskBox
+          content=""
+          checkBox={{ checked: true, label: "" }}
+          selected={false}
+        />
         <TaskBox
           content="I love all of this ♥"
           checkBox={{ checked: false, label: "" }}
+          selected={false}
         />
       </TasksContainer>
     </main>
