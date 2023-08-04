@@ -1,6 +1,6 @@
 import { IInput } from "../interfaces";
 
-export default function InputTodo({ change, click, value }: IInput) {
+export default function InputTodo({ change, click, value, keyup }: IInput) {
   return (
     <div className="relative mb-6 w-full">
       <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
@@ -21,6 +21,7 @@ export default function InputTodo({ change, click, value }: IInput) {
         placeholder="Add a task..."
         onChange={change}
         value={value}
+        onKeyUp={keyup}
       />
       <svg
         className="w-7 h-7 text-gray-500 dark:text-gray-400 absolute top-1.5 bottom-0 right-3 cursor-pointer"

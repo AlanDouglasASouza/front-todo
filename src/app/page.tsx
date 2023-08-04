@@ -43,6 +43,10 @@ export default function Home() {
     setInput("");
   };
 
+  const keyUpEnter = (e: any) => {
+    if (e.keyCode === 13) addTask();
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center text-gray-word bg-gray-default">
       <Header time={selectTime} setTime={setSelectTime} />
@@ -57,6 +61,7 @@ export default function Home() {
           change={(e: any) => setInput(e.target.value)}
           value={input}
           click={addTask}
+          keyup={keyUpEnter}
         />
 
         {allTasks?.map((_task) => {

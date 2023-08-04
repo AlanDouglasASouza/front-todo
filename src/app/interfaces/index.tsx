@@ -10,6 +10,7 @@ export interface IBoxDate {
 export interface IInput {
   change: (e: any) => void;
   click: () => void;
+  keyup: (e: any) => void;
   value: string;
 }
 
