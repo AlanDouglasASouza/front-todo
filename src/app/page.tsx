@@ -9,16 +9,16 @@ import InputTodo from "./components/inputTodo";
 import TasksContainer from "./components/tasksContainer";
 import TaskBox from "./components/taskBox";
 import { IBaseTasks } from "./interfaces";
-import { getTasks, insert } from "./services/taskService";
-import { tasks } from "./data/database";
+import TaskService from "./services/taskService";
 
 export default function Home() {
+  const todoService = new TaskService();
   const [selectTime, setSelectTime] = useState(Times.DAY);
   const [date, setDate] = useState(new Date());
   const { title, data } = formateDate(selectTime, date);
   const [isSelected, setIsSelected] = useState<number>();
   const [input, setInput] = useState<string>("");
-  const [allTasks, setAllTasks] = useState<IBaseTasks[]>(tasks);
+  const [allTasks, setAllTasks] = useState<IBaseTasks[]>(todoService.tasks);
 
   const clickRightTime = () => {
     const newDate = increaseTime(date, selectTime, true);
@@ -31,8 +31,6 @@ export default function Home() {
   };
 
   const addTask = () => {
-    alert(input);
-
     const todo = {
       title: input,
       content: "",
@@ -40,8 +38,8 @@ export default function Home() {
       date: new Date(),
     };
 
-    insert(todo);
-    setAllTasks(getTasks());
+    todoService.insert(todo);
+    setAllTasks(todoService.tasks);
     setInput("");
   };
 
@@ -61,15 +59,18 @@ export default function Home() {
           click={addTask}
         />
 
-        {allTasks?.map((task) => {
-          <TaskBox
-            content={task.content}
-            checkBox={{ checked: task.checked, label: "" }}
-            selected={isSelected === task.id}
-            id={task.id || 0}
-            click={() => setIsSelected(task.id)}
-            title={task.title}
-          />;
+        {allTasks?.map((_task) => {
+          return (
+            <TaskBox
+              key={_task.id}
+              content={_task.content}
+              checkBox={{ checked: _task.checked, label: _task.title }}
+              selected={isSelected === _task.id}
+              id={_task.id || 0}
+              click={() => setIsSelected(_task.id)}
+              title={_task.title}
+            />
+          );
         })}
       </TasksContainer>
     </main>
