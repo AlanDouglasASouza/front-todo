@@ -8,12 +8,17 @@ import { increaseTime } from "./helpers/alterTimes";
 import InputTodo from "./components/inputTodo";
 import TasksContainer from "./components/tasksContainer";
 import TaskBox from "./components/taskBox";
+import { IBaseTasks } from "./interfaces";
+import { getTasks, insert } from "./services/taskService";
+import { tasks } from "./data/database";
 
 export default function Home() {
   const [selectTime, setSelectTime] = useState(Times.DAY);
   const [date, setDate] = useState(new Date());
   const { title, data } = formateDate(selectTime, date);
   const [isSelected, setIsSelected] = useState<number>();
+  const [input, setInput] = useState<string>("");
+  const [allTasks, setAllTasks] = useState<IBaseTasks[]>(tasks);
 
   const clickRightTime = () => {
     const newDate = increaseTime(date, selectTime, true);
@@ -23,6 +28,21 @@ export default function Home() {
   const clickLeftTime = () => {
     const newDate = increaseTime(date, selectTime, false);
     setDate(newDate);
+  };
+
+  const addTask = () => {
+    alert(input);
+
+    const todo = {
+      title: input,
+      content: "",
+      checked: false,
+      date: new Date(),
+    };
+
+    insert(todo);
+    setAllTasks(getTasks());
+    setInput("");
   };
 
   return (
@@ -35,28 +55,22 @@ export default function Home() {
         clickRight={clickRightTime}
       />
       <TasksContainer>
-        <InputTodo />
-        <TaskBox
-          content="I love all of this ♥I love all of this ♥I love all of this ♥I love all of this ♥I love all of this ♥vI love all of this ♥I love all of this ♥"
-          checkBox={{ checked: false, label: "" }}
-          selected={isSelected === 0}
-          id={0}
-          click={() => setIsSelected(0)}
+        <InputTodo
+          change={(e: any) => setInput(e.target.value)}
+          value={input}
+          click={addTask}
         />
-        <TaskBox
-          content=""
-          checkBox={{ checked: true, label: "" }}
-          selected={isSelected === 1}
-          id={1}
-          click={() => setIsSelected(1)}
-        />
-        <TaskBox
-          content="I love all of this ♥"
-          checkBox={{ checked: false, label: "" }}
-          selected={isSelected === 2}
-          id={2}
-          click={() => setIsSelected(2)}
-        />
+
+        {allTasks?.map((task) => {
+          <TaskBox
+            content={task.content}
+            checkBox={{ checked: task.checked, label: "" }}
+            selected={isSelected === task.id}
+            id={task.id || 0}
+            click={() => setIsSelected(task.id)}
+            title={task.title}
+          />;
+        })}
       </TasksContainer>
     </main>
   );

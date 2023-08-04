@@ -1,5 +1,11 @@
-import { tasks } from "../data/database";
+//import { tasks } from "../data/database";
 import { IBaseTasks } from "../interfaces";
+
+let tasks: IBaseTasks[] = [];
+
+export const getTasks = () => {
+  return tasks;
+};
 
 export const insert = (task: IBaseTasks) => {
   task.id = tasks.length;

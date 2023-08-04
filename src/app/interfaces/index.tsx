@@ -7,6 +7,12 @@ export interface IBoxDate {
   clickRight?: () => void;
 }
 
+export interface IInput {
+  change: (e: any) => void;
+  click: () => void;
+  value: string;
+}
+
 export interface IHeader {
   time: string | any;
   setTime: (str: Times) => void;
@@ -24,6 +30,7 @@ export interface ITaskBox {
   content: string;
   id: number;
   click: () => void;
+  title: string;
 }
 
 export interface IBaseTasks {

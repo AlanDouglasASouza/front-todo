@@ -6,6 +6,7 @@ export default function TaskBox({
   content,
   checkBox,
   click,
+  title,
 }: ITaskBox) {
   return (
     <div
@@ -15,7 +16,7 @@ export default function TaskBox({
       onClick={click}
     >
       <div className="flex items-center justify-between w-full">
-        <Checkbox label="La la la la " checked={checkBox?.checked || false} />
+        <Checkbox label={title} checked={checkBox?.checked || false} />
         <svg
           className="w-8 h-8 text-white-word dark:text-gray-200 cursor-pointer"
           aria-hidden="true"
