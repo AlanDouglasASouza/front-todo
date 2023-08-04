@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DateContainer from "./components/dateContainer";
 import Header from "./components/header";
 import { formateDate } from "./helpers/formateDate";
@@ -13,6 +13,7 @@ export default function Home() {
   const [selectTime, setSelectTime] = useState(Times.DAY);
   const [date, setDate] = useState(new Date());
   const { title, data } = formateDate(selectTime, date);
+  const [isSelected, setIsSelected] = useState<number>();
 
   const clickRightTime = () => {
     const newDate = increaseTime(date, selectTime, true);
@@ -38,17 +39,23 @@ export default function Home() {
         <TaskBox
           content="I love all of this ♥I love all of this ♥I love all of this ♥I love all of this ♥I love all of this ♥vI love all of this ♥I love all of this ♥"
           checkBox={{ checked: false, label: "" }}
-          selected={true}
+          selected={isSelected === 0}
+          id={0}
+          click={() => setIsSelected(0)}
         />
         <TaskBox
           content=""
           checkBox={{ checked: true, label: "" }}
-          selected={false}
+          selected={isSelected === 1}
+          id={1}
+          click={() => setIsSelected(1)}
         />
         <TaskBox
           content="I love all of this ♥"
           checkBox={{ checked: false, label: "" }}
-          selected={false}
+          selected={isSelected === 2}
+          id={2}
+          click={() => setIsSelected(2)}
         />
       </TasksContainer>
     </main>

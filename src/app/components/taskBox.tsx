@@ -1,12 +1,18 @@
 import { ITaskBox } from "../interfaces";
 import Checkbox from "./checkBox";
 
-export default function TaskBox({ selected, content, checkBox }: ITaskBox) {
+export default function TaskBox({
+  selected,
+  content,
+  checkBox,
+  click,
+}: ITaskBox) {
   return (
     <div
       className={`flex flex-col items-center ${
         selected && "border-b-2 border-black-border mb-3"
       }`}
+      onClick={click}
     >
       <div className="flex items-center justify-between w-full">
         <Checkbox label="La la la la " checked={checkBox?.checked || false} />

@@ -22,4 +22,14 @@ export interface ITaskBox {
   selected: boolean;
   checkBox?: ICheckBox;
   content: string;
+  id: number;
+  click: () => void;
+}
+
+export interface IBaseTasks {
+  title: string;
+  id?: number;
+  content: string;
+  checked: boolean;
+  date: Date;
 }
