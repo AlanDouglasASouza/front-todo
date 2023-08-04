@@ -12,7 +12,14 @@ export default class TaskService {
     return this.data;
   }
 
-  getTasksByDay(date: Date) {}
+  getTasksByDay(date: Date) {
+    const tasksByDay = this.tasks.filter(
+      (task) =>
+        task.date.toLocaleString().split(",")[0] ===
+        date.toLocaleString().split(",")[0]
+    );
+    return tasksByDay;
+  }
 
   insert(task: IBaseTasks) {
     task.id = this.tasks.length;
