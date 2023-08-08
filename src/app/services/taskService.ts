@@ -18,6 +18,7 @@ export default class TaskService {
         task.date.toLocaleString().split(",")[0] ===
         date.toLocaleString().split(",")[0]
     );
+
     return tasksByDay;
   }
 

@@ -18,18 +18,18 @@ export default function Home() {
   const { title, data } = formateDate(selectTime, date);
   const [isSelected, setIsSelected] = useState<number>();
   const [input, setInput] = useState<string>("");
-  const [allTasks, setAllTasks] = useState<IBaseTasks[]>(
-    todoService.getTasksByDay(date)
-  );
+  const [allTasks, setAllTasks] = useState<IBaseTasks[]>();
 
   const clickRightTime = () => {
     const newDate = increaseTime(date, selectTime, true);
     setDate(newDate);
+    setAllTasks(todoService.getTasksByDay(date));
   };
 
   const clickLeftTime = () => {
     const newDate = increaseTime(date, selectTime, false);
     setDate(newDate);
+    setAllTasks(todoService.getTasksByDay(date));
   };
 
   const addTask = () => {
@@ -37,10 +37,12 @@ export default function Home() {
       title: input,
       content: "",
       checked: false,
-      date,
+      date: date,
     };
 
     todoService.insert(todo);
+    console.log(todoService.tasks);
+
     setAllTasks(todoService.getTasksByDay(date));
     setInput("");
   };
